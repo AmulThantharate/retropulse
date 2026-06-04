@@ -1,0 +1,17 @@
+node_modules
+.next
+out
+build
+.git
+.gitignore
+.dockerignore
+Dockerfile
+README.md
+LICENSE
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+pnpm-debug.log
+coverage
+.env*.local
+.gemini

@@ -5,6 +5,7 @@
 [![Next.js Framework](https://img.shields.io/badge/Next.js-16.2.6-black.svg)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7.3-blue.svg)](https://www.typescriptlang.org/)
 [![Testing Status](https://img.shields.io/badge/smoke--tests-passing-brightgreen.svg)](#-testing--quality-assurance)
+[![Docker Support](https://img.shields.io/badge/docker-supported-blue.svg)](#-docker-setup)
 
 Welcome to **GameHub**, a premium web-based retro arcade platform featuring beautifully reimagined classic games, advanced AI systems, deep game statistics, and dynamic seasonal ambiance. Built with **Next.js**, **React**, **Tailwind CSS**, and **TypeScript**. 🎨🎮
 
@@ -49,6 +50,60 @@ The backdrop of the portal reacts dynamically to the time of year:
 
 ---
 
+## 🏗️ Architecture Design
+
+The GameHub platform is structured to decouple routing, rendering, state loops, and storage concerns. The diagram below illustrates how user interactions flow through the router, UI components, custom hooks/AI engines, and persist through storage services.
+
+```mermaid
+graph TD
+    %% Routing and Pages
+    subgraph Routing ["Next.js App Router (app/)"]
+        H["HomePage (/)"] -->|navigates| S["SnakePage (/snake)"]
+        H -->|navigates| T["TicTacToePage (/tictactoe)"]
+        H -->|navigates| ST["StatsPage (/stats)"]
+    end
+
+    %% Components
+    subgraph Components ["React UI Components"]
+        S -->|renders| SC["SnakeGame Component"]
+        T -->|renders| TC["TicTacToeGame Component"]
+        ST -->|renders| SP["StatsPage Layout"]
+        H -->|renders| AMB["SeasonalParticles Canvas"]
+        SC --> SB["SnakeBoard Grid"]
+        SC --> SO["SnakeOverlay Menus"]
+    end
+
+    %% State and Logic
+    subgraph Logic ["Logic & Hooks"]
+        SC -->|game engine loop| US["useSnakeGame Hook"]
+        TC -->|difficulty minimax| AI["Minimax AI Engine"]
+    end
+
+    %% Side Effects & Storage
+    subgraph Persistence ["Side-Effects & Storage"]
+        US -->|saves results| GS["game-stats.ts"]
+        TC -->|saves results| GS
+        SP -->|reads data| GS
+        GS -->|local storage| LS[("LocalStorage")]
+        
+        US -->|synthesizes sound| AUD["snake-sound.ts"]
+        AMB -->|ambient toggle| PTS["particle-sound.ts"]
+        AUD -->|Web Audio API| SPK["Browser Audio Output"]
+        PTS -->|Web Audio API| SPK
+    end
+
+    classDef route fill:#2563eb,stroke:#3b82f6,color:#fff;
+    classDef comp fill:#059669,stroke:#10b981,color:#fff;
+    classDef logic fill:#d97706,stroke:#f59e0b,color:#fff;
+    classDef storage fill:#7c3aed,stroke:#8b5cf6,color:#fff;
+    class H,S,T,ST route;
+    class SC,TC,SP,AMB,SB,SO comp;
+    class US,AI logic;
+    class GS,LS,AUD,PTS,SPK storage;
+```
+
+---
+
 ## 🛠️ Tech Stack
 
 * **Framework**: [Next.js](https://nextjs.org/) (React 19, App Router, Turbopack)
@@ -87,6 +142,23 @@ To create an optimized production bundle and run the server:
 npm run build
 npm run start
 ```
+
+---
+
+## 🐳 Docker Setup
+
+You can build and run the application in a lightweight container environment using Docker. A multi-stage `Dockerfile` is provided for highly optimized production sizes.
+
+### 1. Build the Docker Image
+```bash
+docker build -t gamehub-arcade:1.0 .
+```
+
+### 2. Run the Container
+```bash
+docker run -d -p 3000:3000 --name gamehub-arcade gamehub-arcade:1.0
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
@@ -133,6 +205,8 @@ npm run test:coverage
 │   └── particle-sound.ts # Sound toggle generators
 ├── scripts/              # Verification & automated test runners
 │   └── smoke-test.ts     # Game mechanics validation script
+├── Dockerfile            # Multi-stage Docker packaging configuration
+├── .dockerignore         # Docker context exclusions
 └── LICENSE               # MIT License details
 ```
 
