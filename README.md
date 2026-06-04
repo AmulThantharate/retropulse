@@ -52,7 +52,53 @@ The backdrop of the portal reacts dynamically to the time of year:
 
 ## 🏗️ Architecture Design
 
-The GameHub platform is structured to decouple routing, rendering, state loops, and storage concerns. The diagram below illustrates how user interactions flow through the router, UI components, custom hooks/AI engines, and persist through storage services.
+The GameHub platform is structured to decouple routing, rendering, state loops, and storage concerns. Below are both text-based and visual/Mermaid representations of the architecture showing how user interactions flow through pages, components, engines, and side-effects.
+
+### 🗺️ Text Schematic
+
+```text
+ ┌─────────────────────────────────────────────────────────────────┐
+ │                   Next.js App Router (app/)                     │
+ │                                                                 │
+ │                         ┌──────────┐                            │
+ │                         │ HomePage │                            │
+ │                         └────┬─────┘                            │
+ │         ┌────────────────────┼────────────────────┐             │
+ │         ▼                    ▼                    ▼             │
+ │   ┌───────────┐        ┌───────────┐        ┌───────────┐       │
+ │   │ SnakePage │        │  TTTPage  │        │ StatsPage │       │
+ │   └─────┬─────┘        └─────┬─────┘        └─────┬─────┘       │
+ └─────────┼────────────────────┼────────────────────┼─────────────┘
+           │                    │                    │
+           ▼                    ▼                    ▼
+ ┌──────────────────┐ ┌──────────────────┐ ┌──────────────────┐
+ │  SnakeGame Comp  │ │  TicTacToe Comp  │ │ StatsPage Layout │
+ │                  │ │                  │ │                  │
+ │ ┌──────────────┐ │ │                  │ │                  │
+ │ │  SnakeBoard  │ │ │                  │ │                  │
+ │ └──────────────┘ │ │                  │ │                  │
+ └─────────┬────────┘ └─────────┬────────┘ └─────────┬────────┘
+           │                    │                    │
+           ▼                    ▼                    ▼
+ ┌──────────────────┐ ┌──────────────────┐ ┌──────────────────┐
+ │ useSnakeGame.ts  │ │  Minimax Engine  │ │  game-stats.ts   │
+ │ (Gameplay Loop)  │ │ (Unbeatable AI)  │ │ (Stats Tracker)  │
+ └─────────┬────────┘ └─────────┬────────┘ └─────────┬────────┘
+           │                    │                    │
+           └────────────────────┼────────────────────┘
+                                │
+                                ▼
+ ┌─────────────────────────────────────────────────────────────────┐
+ │               Side-Effects, Storage & Ambiance                  │
+ │                                                                 │
+ │   ┌──────────────────────┐            ┌─────────────────────┐   │
+ │   │   LocalStorage       │            │  Web Audio Engine   │   │
+ │   │   (Stats & Streaks)  │            │  (Synthesized SFX)  │   │
+ │   └──────────────────────┘            └─────────────────────┘   │
+ └─────────────────────────────────────────────────────────────────┘
+```
+
+### 📊 Interaction Flow (Mermaid)
 
 ```mermaid
 graph TD
