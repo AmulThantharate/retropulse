@@ -212,6 +212,15 @@ npm run test:coverage
 
 ---
 
+## 👥 Author
+
+* **Amul Thantharate**
+  * GitHub: [@AmulThantharate](https://github.com/AmulThantharate)
+  * Email: [amulthantharate69@gmail.com](mailto:amulthantharate69@gmail.com)
+
+---
+
 ## 📄 License
 
 Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+
