@@ -167,7 +167,7 @@ Ensure you have **Node.js (v18.0.0+)** installed on your system.
 
 ### 1. Clone the Codebase
 ```bash
-git clone https://github.com/your-username/snake-game.git
+git clone https://github.com/AmulThantharate/snake-game.git
 cd snake-game
 ```
 
