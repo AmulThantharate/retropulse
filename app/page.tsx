@@ -146,7 +146,7 @@ export default function HomePage() {
 
         <h1 className="animate-slide-up-fade animate-slide-up-fade-delay-1 text-5xl font-bold tracking-tight sm:text-7xl">
           <span className="bg-gradient-to-b from-foreground to-foreground/70 bg-clip-text text-transparent">
-            GameHub
+            RetroPulse
           </span>
         </h1>
 

@@ -1,4 +1,4 @@
-# 🕹️ GameHub Arcade — v1.0 🚀
+# 🕹️ RetroPulse Arcade — v1.0 🚀
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-blue.svg)](https://nodejs.org/)
@@ -7,7 +7,7 @@
 [![Testing Status](https://img.shields.io/badge/smoke--tests-passing-brightgreen.svg)](#-testing--quality-assurance)
 [![Docker Support](https://img.shields.io/badge/docker-supported-blue.svg)](#-docker-setup)
 
-Welcome to **GameHub**, a premium web-based retro arcade platform featuring beautifully reimagined classic games, advanced AI systems, deep game statistics, and dynamic seasonal ambiance. Built with **Next.js**, **React**, **Tailwind CSS**, and **TypeScript**. 🎨🎮
+Welcome to **RetroPulse**, a premium web-based retro arcade platform featuring beautifully reimagined classic games, advanced AI systems, deep game statistics, and dynamic seasonal ambiance. Built with **Next.js**, **React**, **Tailwind CSS**, and **TypeScript**. 🎨🎮
 
 ---
 
@@ -52,7 +52,7 @@ The backdrop of the portal reacts dynamically to the time of year:
 
 ## 🏗️ Architecture Design
 
-The GameHub platform is structured to decouple routing, rendering, state loops, and storage concerns. Below are both text-based and visual/Mermaid representations of the architecture showing how user interactions flow through pages, components, engines, and side-effects.
+The RetroPulse platform is structured to decouple routing, rendering, state loops, and storage concerns. Below are both text-based and visual/Mermaid representations of the architecture showing how user interactions flow through pages, components, engines, and side-effects.
 
 ### 🗺️ Text Schematic
 
@@ -167,8 +167,8 @@ Ensure you have **Node.js (v18.0.0+)** installed on your system.
 
 ### 1. Clone the Codebase
 ```bash
-git clone https://github.com/AmulThantharate/snake-game.git
-cd snake-game
+git clone https://github.com/AmulThantharate/retropulse.git
+cd retropulse
 ```
 
 ### 2. Install Project Dependencies
@@ -180,7 +180,7 @@ npm install
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) to access the GameHub interface.
+Open [http://localhost:3000](http://localhost:3000) to access the RetroPulse interface.
 
 ### 4. Build for Production
 To create an optimized production bundle and run the server:
@@ -197,12 +197,12 @@ You can build and run the application in a lightweight container environment usi
 
 ### 1. Build the Docker Image
 ```bash
-docker build -t gamehub-arcade:1.0 .
+docker build -t retropulse:1.0 .
 ```
 
 ### 2. Run the Container
 ```bash
-docker run -d -p 3000:3000 --name gamehub-arcade gamehub-arcade:1.0
+docker run -d -p 3000:3000 --name retropulse retropulse:1.0
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
@@ -229,7 +229,7 @@ npm run test:coverage
 
 ```text
 ├── app/                  # Next.js App Router Pages
-│   ├── page.tsx          # Main GameHub Landing Portal
+│   ├── page.tsx          # Main RetroPulse Landing Portal
 │   ├── layout.tsx        # Global provider layouts (Themes, Fonts, Analytics)
 │   ├── globals.css       # Custom styles, gradients, dot patterns, animations
 │   ├── snake/            # Snake game screen page

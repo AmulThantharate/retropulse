@@ -1,6 +1,6 @@
 "use client"
 
-const STORAGE_KEY = "gamehub-stats"
+const STORAGE_KEY = "retropulse-stats"
 
 export interface SnakeStats {
   gamesPlayed: number
