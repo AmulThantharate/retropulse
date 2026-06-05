@@ -24,10 +24,12 @@ export interface GameStatsData {
   playDates: string[]
 }
 
-const DEFAULT_STATS: GameStatsData = {
-  snake: { gamesPlayed: 0, highScore: 0, totalScore: 0, foodEaten: 0, maxLength: 0 },
-  tictactoe: { gamesPlayed: 0, winsAsX: 0, winsAsO: 0, draws: 0 },
-  playDates: [],
+function createDefaultStats(): GameStatsData {
+  return {
+    snake: { gamesPlayed: 0, highScore: 0, totalScore: 0, foodEaten: 0, maxLength: 0 },
+    tictactoe: { gamesPlayed: 0, winsAsX: 0, winsAsO: 0, draws: 0 },
+    playDates: [],
+  }
 }
 
 function todayKey(): string {
@@ -35,13 +37,13 @@ function todayKey(): string {
 }
 
 function load(): GameStatsData {
-  if (typeof window === "undefined") return DEFAULT_STATS
+  if (typeof window === "undefined") return createDefaultStats()
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return DEFAULT_STATS
+    if (!raw) return createDefaultStats()
     return JSON.parse(raw) as GameStatsData
   } catch {
-    return DEFAULT_STATS
+    return createDefaultStats()
   }
 }
 
@@ -133,5 +135,5 @@ export function recordTicTacToeGame(winner: "X" | "O" | "draw") {
 
 /** Reset all stats back to zero. */
 export function resetStats() {
-  save(DEFAULT_STATS)
+  save(createDefaultStats())
 }
